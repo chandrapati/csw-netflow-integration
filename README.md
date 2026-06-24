@@ -1,5 +1,7 @@
 # Cisco Secure Workload — NetFlow Integration Guide
 
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=chandrapati.csw-netflow-integration&left_text=visitors)
+
 > **Disclaimer:** Community reference guide by Cisco Solutions Engineering. Always consult [official Cisco Secure Workload documentation](https://www.cisco.com/c/en/us/products/security/tetration/index.html) for authoritative guidance.
 
 NetFlow v9/IPFIX agentless flow ingestion from Cisco IOS/NX-OS switches and routers
