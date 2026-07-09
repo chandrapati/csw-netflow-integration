@@ -18,7 +18,7 @@ NetFlow v9/IPFIX agentless flow ingestion from Cisco IOS/NX-OS switches and rout
 
 ---
 
-## Related Cisco Secure Workload Resources
+## CSW Integration Guides & Resources
 
 | Repository | Description | Best for |
 |------------|-------------|---------|
