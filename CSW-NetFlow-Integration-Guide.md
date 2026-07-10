@@ -53,7 +53,7 @@ This is the primary agentless flow ingestion path for physical and virtual workl
 │             │    CSW Ingest Appliance              │                  │
 │             │    (NetFlow Connector)               │                  │
 │             │                                     │                  │
-│             │  Listening: UDP port 2055 (default) │                  │
+│             │  Listening: UDP port 4729 (default) │                  │
 │             │  Max rate: 15,000 flows/second       │                  │
 │             └───────────────┬─────────────────────┘                  │
 │                             │ Forwarded to CSW collectors            │
@@ -87,7 +87,7 @@ Deploy CSW agents where possible (modern Linux/Windows servers) and use NetFlow 
 ### Network device requirements
 - [ ] Cisco IOS, IOS-XE, IOS-XR, NX-OS, or any device supporting **NetFlow v9 or IPFIX**
 - [ ] NetFlow/IPFIX feature licensed and enabled on the device
-- [ ] Network reachability: switch → CSW Ingest appliance on **UDP port 2055** (or configured port)
+- [ ] Network reachability: switch → CSW Ingest appliance on **UDP port 4729** (or configured port)
 
 ### CSW / infrastructure requirements
 - [ ] **CSW Ingest appliance** deployed and registered (not Edge — NetFlow uses Ingest)
@@ -121,7 +121,7 @@ flow record CSW-FLOW-RECORD
 flow exporter CSW-EXPORTER
  destination 10.x.x.x          ! IP of CSW Ingest appliance
  source GigabitEthernet0/0     ! Source interface
- transport udp 2055             ! Default NetFlow port
+ transport udp 4729             ! CSW NetFlow connector default port
  export-protocol netflow-v9
  template data timeout 60
 
@@ -148,7 +148,7 @@ feature netflow
 flow exporter CSW-EXPORT
   destination 10.x.x.x use-vrf management
   source mgmt0
-  transport udp 2055
+  transport udp 4729
   version 9
     template data timeout 60
 
@@ -207,7 +207,7 @@ show flow monitor CSW-MONITOR cache
 |-------|-------|
 | **Connector Name** | e.g., `netflow-dc-nexus` |
 | **Connector Type** | NetFlow |
-| **Listening Port** | UDP 2055 (default; must match switch exporter config) |
+| **Listening Port** | UDP 4729 (default; must match switch exporter config) |
 
 ### B3 — VRF assignment
 
@@ -217,7 +217,7 @@ Configure the VRF for this connector:
 3. Provide:
    - VRF Name (the VRF the monitored workloads belong to)
    - IP subnet CIDR of the monitored workloads
-   - Port range: `2055-2055`
+   - Port range: `4729-4729`
 
 > One NetFlow connector per VRF. If you have multiple VRFs, create separate connectors.
 
@@ -277,7 +277,7 @@ show flow exporter CSW-EXPORTER statistics
 
 ### Check on Ingest appliance
 ```bash
-tcpdump -i any -n port 2055
+tcpdump -i any -n port 4729
 # Should show UDP packets from switch management IPs
 ```
 
@@ -298,7 +298,7 @@ tcpdump -i any -n port 2055
 
 | Symptom | Check |
 |---------|-------|
-| No flows in CSW | Verify switch exporter destination IP/port matches Ingest appliance; check UDP 2055 is open in any firewall between switch and Ingest; confirm VRF assignment covers the subnet |
+| No flows in CSW | Verify switch exporter destination IP/port matches Ingest appliance; check UDP 4729 is open in any firewall between switch and Ingest; confirm VRF assignment covers the subnet |
 | Flows appear but workloads not labeled | Add CSW agents or ServiceNow labels for workload context — NetFlow provides flow data only, not host metadata |
 | High drop rate on connector | Flow rate exceeding 15,000/second; reduce NetFlow source interfaces or increase sampling interval on switch |
 | Template not received | Ensure switch exports templates regularly (`template data timeout 60`); verify IPFIX/v9 (not v5) is configured |

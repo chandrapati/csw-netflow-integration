@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Cisco Secure Workload — NetFlow Integration Guide</title>
   <style>
-
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
 div.column{flex: auto; overflow-x: auto;}
@@ -21,9 +21,8 @@ vertical-align: middle;
 }
 .display.math{display: block; text-align: center; margin: 0.5rem auto;}
 
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -86,8 +85,7 @@ code span.va { color: #19177c; }
 code span.vs { color: #4070a0; } 
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
-  <style type="text/css">body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:900px;margin:2rem auto;padding:0 1.5rem;color:#1a1a2e;line-height:1.65}h1{font-size:1.8rem;border-bottom:2px solid #005073;padding-bottom:.5rem}h2{font-size:1.3rem;margin-top:2rem;color:#005073}h3{font-size:1.1rem;color:#333}code{background:#f4f4f4;padding:.15em .4em;border-radius:3px;font-size:.9em}pre{background:#f4f4f4;padding:1rem;border-radius:4px;overflow-x:auto}table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.92em}th{background:#005073;color:#fff;padding:.5rem .75rem;text-align:left}td{padding:.45rem .75rem;border-bottom:1px solid #e2e2e2}tr:nth-child(even) td{background:#f9f9f9}blockquote{border-left:4px solid #005073;margin:0;padding:.5rem 1rem;background:#f0f7fb;color:#444}a{color:#0066cc}
-</style>
+  <link href="data:application/octet-stream;base64,Ym9keXtmb250LWZhbWlseTotYXBwbGUtc3lzdGVtLEJsaW5rTWFjU3lzdGVtRm9udCwiU2Vnb2UgVUkiLHNhbnMtc2VyaWY7bWF4LXdpZHRoOjkwMHB4O21hcmdpbjoycmVtIGF1dG87cGFkZGluZzowIDEuNXJlbTtjb2xvcjojMWExYTJlO2xpbmUtaGVpZ2h0OjEuNjV9aDF7Zm9udC1zaXplOjEuOHJlbTtib3JkZXItYm90dG9tOjJweCBzb2xpZCAjMDA1MDczO3BhZGRpbmctYm90dG9tOi41cmVtfWgye2ZvbnQtc2l6ZToxLjNyZW07bWFyZ2luLXRvcDoycmVtO2NvbG9yOiMwMDUwNzN9aDN7Zm9udC1zaXplOjEuMXJlbTtjb2xvcjojMzMzfWNvZGV7YmFja2dyb3VuZDojZjRmNGY0O3BhZGRpbmc6LjE1ZW0gLjRlbTtib3JkZXItcmFkaXVzOjNweDtmb250LXNpemU6LjllbX1wcmV7YmFja2dyb3VuZDojZjRmNGY0O3BhZGRpbmc6MXJlbTtib3JkZXItcmFkaXVzOjRweDtvdmVyZmxvdy14OmF1dG99dGFibGV7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlO3dpZHRoOjEwMCU7bWFyZ2luOjFyZW0gMDtmb250LXNpemU6LjkyZW19dGh7YmFja2dyb3VuZDojMDA1MDczO2NvbG9yOiNmZmY7cGFkZGluZzouNXJlbSAuNzVyZW07dGV4dC1hbGlnbjpsZWZ0fXRke3BhZGRpbmc6LjQ1cmVtIC43NXJlbTtib3JkZXItYm90dG9tOjFweCBzb2xpZCAjZTJlMmUyfXRyOm50aC1jaGlsZChldmVuKSB0ZHtiYWNrZ3JvdW5kOiNmOWY5Zjl9YmxvY2txdW90ZXtib3JkZXItbGVmdDo0cHggc29saWQgIzAwNTA3MzttYXJnaW46MDtwYWRkaW5nOi41cmVtIDFyZW07YmFja2dyb3VuZDojZjBmN2ZiO2NvbG9yOiM0NDR9YXtjb2xvcjojMDA2NmNjfQo=" rel="stylesheet" />
 </head>
 <body>
 <h1 id="cisco-secure-workload-netflow-integration-guide">Cisco Secure
@@ -153,7 +151,7 @@ ISE, AnyConnect, and ServiceNow connectors).</p>
 │             │    CSW Ingest Appliance              │                  │
 │             │    (NetFlow Connector)               │                  │
 │             │                                     │                  │
-│             │  Listening: UDP port 2055 (default) │                  │
+│             │  Listening: UDP port 4729 (default) │                  │
 │             │  Max rate: 15,000 flows/second       │                  │
 │             └───────────────┬─────────────────────┘                  │
 │                             │ Forwarded to CSW collectors            │
@@ -193,7 +191,7 @@ any device supporting <strong>NetFlow v9 or IPFIX</strong></label></li>
 <li><label><input type="checkbox"></input>NetFlow/IPFIX feature licensed and
 enabled on the device</label></li>
 <li><label><input type="checkbox"></input>Network reachability: switch → CSW
-Ingest appliance on <strong>UDP port 2055</strong> (or configured
+Ingest appliance on <strong>UDP port 4729</strong> (or configured
 port)</label></li>
 </ul>
 <h3 id="csw-infrastructure-requirements">CSW / infrastructure
@@ -233,7 +231,7 @@ flow record CSW-FLOW-RECORD
 flow exporter CSW-EXPORTER
  destination 10.x.x.x          ! IP of CSW Ingest appliance
  source GigabitEthernet0/0     ! Source interface
- transport udp 2055             ! Default NetFlow port
+ transport udp 4729             ! CSW NetFlow connector default port
  export-protocol netflow-v9
  template data timeout 60
 
@@ -256,7 +254,7 @@ feature netflow
 flow exporter CSW-EXPORT
   destination 10.x.x.x use-vrf management
   source mgmt0
-  transport udp 2055
+  transport udp 4729
   version 9
     template data timeout 60
 
@@ -313,23 +311,23 @@ connector configuration</h3>
 <col style="width: 50%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Field</th>
 <th>Value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Connector Name</strong></td>
 <td>e.g., <code>netflow-dc-nexus</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Connector Type</strong></td>
 <td>NetFlow</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Listening Port</strong></td>
-<td>UDP 2055 (default; must match switch exporter config)</td>
+<td>UDP 4729 (default; must match switch exporter config)</td>
 </tr>
 </tbody>
 </table>
@@ -338,7 +336,7 @@ connector configuration</h3>
 Workloads &gt; Agents &gt; Configuration tab</strong> 2. <strong>Agent
 Remote VRF Configurations &gt; Create Config</strong> 3. Provide: - VRF
 Name (the VRF the monitored workloads belong to) - IP subnet CIDR of the
-monitored workloads - Port range: <code>2055-2055</code></p>
+monitored workloads - Port range: <code>4729-4729</code></p>
 <blockquote>
 <p>One NetFlow connector per VRF. If you have multiple VRFs, create
 separate connectors.</p>
@@ -352,69 +350,69 @@ Elements</h2>
 elements. Key mandatory fields:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Element</th>
 <th>Description</th>
 <th>Required?</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>octetDeltaCount</code> (ID 1)</td>
 <td>Bytes in flow</td>
 <td>Yes</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>packetDeltaCount</code> (ID 2)</td>
 <td>Packets in flow</td>
 <td>Yes</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>sourceIPv4Address</code> (ID 8)</td>
 <td>Source IP</td>
 <td>Yes</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>destinationIPv4Address</code> (ID 12)</td>
 <td>Destination IP</td>
 <td>Yes</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>sourceTransportPort</code> (ID 7)</td>
 <td>Source port</td>
 <td>Yes</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>destinationTransportPort</code> (ID 11)</td>
 <td>Destination port</td>
 <td>Yes</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>protocolIdentifier</code> (ID 4)</td>
 <td>IP protocol</td>
 <td>Yes</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>flowStartSysUpTime</code> (ID 22)</td>
 <td>Flow start time</td>
 <td>Yes</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>flowEndSysUpTime</code> (ID 21)</td>
 <td>Flow end time</td>
 <td>Yes</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>tcpControlBits</code> (ID 6)</td>
 <td>TCP flags</td>
 <td>Recommended</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>ingressInterface</code> (ID 10)</td>
 <td>Ingress interface</td>
 <td>Recommended</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>egressInterface</code> (ID 14)</td>
 <td>Egress interface</td>
 <td>Recommended</td>
@@ -429,21 +427,21 @@ elements. Key mandatory fields:</p>
 <col style="width: 46%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Metric</th>
 <th>Value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Maximum flows per second</td>
 <td><strong>15,000</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Behavior when exceeded</td>
 <td>Additional flows dropped</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Recommended action if exceeded</td>
 <td>Reduce source interfaces; increase sampling rate; add second Ingest
 appliance</td>
@@ -472,31 +470,31 @@ workloads</li>
 <pre class="ios"><code>show flow exporter CSW-EXPORTER statistics
 ! Look for: &quot;Packets sent to destination&quot; incrementing</code></pre>
 <h3 id="check-on-ingest-appliance">Check on Ingest appliance</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tcpdump</span> <span class="at">-i</span> any <span class="at">-n</span> port 2055</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tcpdump</span> <span class="at">-i</span> any <span class="at">-n</span> port 4729</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Should show UDP packets from switch management IPs</span></span></code></pre></div>
 <hr />
 <h2 id="limits">10. Limits</h2>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Metric</th>
 <th>Limit</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Flow rate per connector</td>
 <td>15,000 flows/second</td>
 </tr>
-<tr>
+<tr class="even">
 <td>NetFlow versions supported</td>
 <td>v9 and IPFIX only (not v5)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>VRF per connector</td>
 <td>1</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Connector location</td>
 <td>Ingest appliance (not Edge)</td>
 </tr>
@@ -510,29 +508,29 @@ workloads</li>
 <col style="width: 43%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Symptom</th>
 <th>Check</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>No flows in CSW</td>
 <td>Verify switch exporter destination IP/port matches Ingest appliance;
-check UDP 2055 is open in any firewall between switch and Ingest;
+check UDP 4729 is open in any firewall between switch and Ingest;
 confirm VRF assignment covers the subnet</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Flows appear but workloads not labeled</td>
 <td>Add CSW agents or ServiceNow labels for workload context — NetFlow
 provides flow data only, not host metadata</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>High drop rate on connector</td>
 <td>Flow rate exceeding 15,000/second; reduce NetFlow source interfaces
 or increase sampling interval on switch</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Template not received</td>
 <td>Ensure switch exports templates regularly
 (<code>template data timeout 60</code>); verify IPFIX/v9 (not v5) is
@@ -549,34 +547,34 @@ configured</td>
 <col style="width: 26%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Repository</th>
 <th>Description</th>
 <th>Best for</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><a href="https://github.com/chandrapati/csw-erspan-integration">csw-erspan-integration</a></td>
 <td>ERSPAN agentless packet capture for deeper visibility</td>
 <td>Full packet inspection</td>
 </tr>
-<tr>
+<tr class="even">
 <td><a href="https://github.com/chandrapati/CSW-Secure-Firewall-Integration-Guide">CSW-Secure-Firewall-Integration-Guide</a></td>
 <td>NSEL flow ingestion from Cisco Secure Firewall</td>
 <td>Firewall-specific flows</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><a href="https://github.com/chandrapati/CSW-Agent-Installation-Guide">CSW-Agent-Installation-Guide</a></td>
 <td>Deploy CSW agents for deep process-level visibility</td>
 <td>Agent-based workloads</td>
 </tr>
-<tr>
+<tr class="even">
 <td><a href="https://github.com/chandrapati/csw-servicenow-integration">csw-servicenow-integration</a></td>
 <td>ServiceNow CMDB labels for workload context</td>
 <td>Enriching agentless workloads</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><a href="https://github.com/chandrapati/CSW-Policy-Lifecycle">CSW-Policy-Lifecycle</a></td>
 <td>ADM → policy workflow</td>
 <td>Building policy from flows</td>
